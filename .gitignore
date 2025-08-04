@@ -1,6 +1,5 @@
 # dependencies
-/node_modules
-/sprite-icons/node_modules
+node_modules/
 /lucide-static
 /lucide-react
 
@@ -41,4 +40,6 @@ next-env.d.ts
 # .vscode/
 # *.code-workspace
 .history/
+*.tgz
+
 
