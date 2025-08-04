@@ -1,0 +1,9 @@
+import { StepForward as DevIcon, type LucideProps } from "lucide-react"
+export const StepForward: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#step-forward`} />
+    </svg>
+  )

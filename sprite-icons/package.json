@@ -1,0 +1,36 @@
+{
+  "name": "@react-zero-ui/svg-sprite",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Lucide-React DX + zero-runtime SVG sprite with Next/Vite/Micro-frontend support",
+  "main": "src/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "scripts",
+    "README.md"
+  ],
+  "scripts": {
+    "sprite": "npx tsc"
+  },
+  "bin": {
+    "svg-sprite-gen": "scripts/index.js"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "dependencies": {
+    "lucide-react": "^0.525.0",
+    "lucide-static": "^0.525.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/traverse": "^7.28.0",
+    "@types/node": "^24.2.0",
+    "svgstore": "^3.0.1",
+    "typescript": "^5.0.0"
+  }
+}

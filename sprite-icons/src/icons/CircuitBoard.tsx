@@ -1,0 +1,9 @@
+import { CircuitBoard as DevIcon, type LucideProps } from "lucide-react"
+export const CircuitBoard: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#circuit-board`} />
+    </svg>
+  )

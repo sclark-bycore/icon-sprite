@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/sprite-icons/node_modules
 /lucide-static
 /lucide-react
 

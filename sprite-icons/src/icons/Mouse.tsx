@@ -1,0 +1,9 @@
+import { Mouse as DevIcon, type LucideProps } from "lucide-react"
+export const Mouse: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#mouse`} />
+    </svg>
+  )

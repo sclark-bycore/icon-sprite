@@ -1,0 +1,9 @@
+import { Fence as DevIcon, type LucideProps } from "lucide-react"
+export const Fence: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#fence`} />
+    </svg>
+  )

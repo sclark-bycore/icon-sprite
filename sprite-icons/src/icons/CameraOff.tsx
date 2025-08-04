@@ -1,0 +1,9 @@
+import { CameraOff as DevIcon, type LucideProps } from "lucide-react"
+export const CameraOff: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#camera-off`} />
+    </svg>
+  )

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs/><symbol id="a-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3.5 13h6"/>
+  <path d="m2 16 4.5-9 4.5 9"/>
+  <path d="M18 7v9"/>
+  <path d="m14 12 4 4 4-4"/>
+</symbol><symbol id="a-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3.5 13h6"/>
+  <path d="m2 16 4.5-9 4.5 9"/>
+  <path d="M18 16V7"/>
+  <path d="m14 11 4-4 4 4"/>
+</symbol><symbol id="a-large-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 14h-5"/>
+  <path d="M16 16v-3.5a2.5 2.5 0 0 1 5 0V16"/>
+  <path d="M4.5 13h6"/>
+  <path d="m3 16 4.5-9 4.5 9"/>
+</symbol><symbol id="accessibility" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="16" cy="4" r="1"/>
+  <path d="m18 19 1-7-6 1"/>
+  <path d="m5 8 3-3 5.5 3-2.36 3.5"/>
+  <path d="M4.24 14.5a5 5 0 0 0 6.88 6"/>
+  <path d="M13.76 17.5a5 5 0 0 0-6.88-6"/>
+</symbol><symbol id="activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>
+</symbol><symbol id="alarm-clock-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="13" r="8"/>
+  <path d="M5 3 2 6"/>
+  <path d="m22 6-3-3"/>
+  <path d="M6.38 18.7 4 21"/>
+  <path d="M17.64 18.67 20 21"/>
+  <path d="m9 13 2 2 4-4"/>
+</symbol><symbol id="alarm-clock-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="13" r="8"/>
+  <path d="M5 3 2 6"/>
+  <path d="m22 6-3-3"/>
+  <path d="M6.38 18.7 4 21"/>
+  <path d="M17.64 18.67 20 21"/>
+  <path d="M9 13h6"/>
+</symbol><symbol id="alarm-clock-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M6.87 6.87a8 8 0 1 0 11.26 11.26"/>
+  <path d="M19.9 14.25a8 8 0 0 0-9.15-9.15"/>
+  <path d="m22 6-3-3"/>
+  <path d="M6.26 18.67 4 21"/>
+  <path d="m2 2 20 20"/>
+  <path d="M4 4 2 6"/>
+</symbol><symbol id="alarm-clock-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="13" r="8"/>
+  <path d="M5 3 2 6"/>
+  <path d="m22 6-3-3"/>
+  <path d="M6.38 18.7 4 21"/>
+  <path d="M17.64 18.67 20 21"/>
+  <path d="M12 10v6"/>
+  <path d="M9 13h6"/>
+</symbol><symbol id="alarm-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="13" r="8"/>
+  <path d="M12 9v4l2 2"/>
+  <path d="M5 3 2 6"/>
+  <path d="m22 6-3-3"/>
+  <path d="M6.38 18.7 4 21"/>
+  <path d="M17.64 18.67 20 21"/>
+</symbol><symbol id="alarm-smoke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M11 21c0-2.5 2-2.5 2-5"/>
+  <path d="M16 21c0-2.5 2-2.5 2-5"/>
+  <path d="m19 8-.8 3a1.25 1.25 0 0 1-1.2 1H7a1.25 1.25 0 0 1-1.2-1L5 8"/>
+  <path d="M21 3a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1z"/>
+  <path d="M6 21c0-2.5 2-2.5 2-5"/>
+</symbol><symbol id="album" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+  <polyline points="11 3 11 11 14 8 17 11 17 3"/>
+</symbol><symbol id="align-center-horizontal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2 12h20"/>
+  <path d="M10 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4"/>
+  <path d="M10 8V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4"/>
+  <path d="M20 16v1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1"/>
+  <path d="M14 8V7c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v1"/>
+</symbol><symbol id="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14"/>
+  <path d="m12 5 7 7-7 7"/>
+</symbol></svg>

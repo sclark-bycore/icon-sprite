@@ -1,0 +1,9 @@
+import { CopySlash as DevIcon, type LucideProps } from "lucide-react"
+export const CopySlash: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#copy-slash`} />
+    </svg>
+  )

@@ -1,0 +1,9 @@
+import { CaptionsOff as DevIcon, type LucideProps } from "lucide-react"
+export const CaptionsOff: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#captions-off`} />
+    </svg>
+  )

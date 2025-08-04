@@ -1,0 +1,9 @@
+import { Table as DevIcon, type LucideProps } from "lucide-react"
+export const Table: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#table`} />
+    </svg>
+  )

@@ -1,0 +1,9 @@
+import { Bird as DevIcon, type LucideProps } from "lucide-react"
+export const Bird: React.FC<LucideProps> = (props) =>
+  process.env.NODE_ENV === "development" ? (
+    <DevIcon {...props} />
+  ) : (
+    <svg {...props}>
+      <use href={`/icons.svg#bird`} />
+    </svg>
+  )
