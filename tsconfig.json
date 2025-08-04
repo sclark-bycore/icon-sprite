@@ -34,6 +34,9 @@
       "@zero-ui/attributes": [
         "./.zero-ui/attributes.js"
       ],
+      "@svg-sprite": [
+        "./app/components/ui/index.ts"
+      ],
     },
     "baseUrl": "."
   },
@@ -44,6 +47,7 @@
     ".next/types/**/*.ts",
     ".zero-ui/**/*.d.ts",
     "next-env.d.ts",
+    "scripts/config.js",
   ],
   "exclude": [
     "node_modules"

@@ -1,20 +1,24 @@
-// src/scan-icons.js
+// scripts/scan-icons.js
 import fs from "fs"
 import path from "path"
 import * as babel from "@babel/core"
 import traverseImport from "@babel/traverse"
 import * as t from "@babel/types"
-const traverse = traverseImport.default
-const iconNames = new Set()
+import { IMPORT_NAME } from "./config.js"
 
-function walk(dir) {
-  for (const file of fs.readdirSync(dir)) {
-    const full = path.join(dir, file)
+const traverse = traverseImport.default
+const ICONS = new Set()
+const ROOT = path.join(process.cwd(), "app") // or "src"
+
+// walk all TSX/JSX files
+function collect(dir) {
+  for (const f of fs.readdirSync(dir)) {
+    const full = path.join(dir, f)
     if (fs.statSync(full).isDirectory()) {
-      walk(full)
-    } else if (full.endsWith(".tsx")) {
-      const code = fs.readFileSync(full, "utf8")
-      const ast = babel.parseSync(code, {
+      collect(full)
+    } else if (/\.[jt]sx$/.test(full)) {
+      const src = fs.readFileSync(full, "utf8")
+      const ast = babel.parseSync(src, {
         filename: full,
         presets: [
           ["@babel/preset-typescript", { isTSX: true, allExtensions: true }],
@@ -22,19 +26,15 @@ function walk(dir) {
         ],
         sourceType: "module",
       })
-      if (!ast) continue
-
       traverse(ast, {
-        JSXElement(path) {
-          const opening = path.node.openingElement
-          const name = opening.name
-          // here we find all the elements that are named "Icon" or return
-          if (!t.isJSXIdentifier(name) || name.name !== "Icon") return
-
-          for (const attr of opening.attributes) {
-            // here we find all the attributes that are named "name" and are a string literal
-            if (t.isJSXAttribute(attr) && t.isJSXIdentifier(attr.name, { name: "name" })) {
-              iconNames.add(attr.value.value)
+        ImportDeclaration(path) {
+          const from = path.node.source.value
+          // adjust this to match your icon lib path
+          if (from === IMPORT_NAME) {
+            for (const spec of path.node.specifiers) {
+              if (t.isImportSpecifier(spec)) {
+                ICONS.add(spec.imported.name)
+              }
             }
           }
         },
@@ -43,11 +43,9 @@ function walk(dir) {
   }
 }
 
-const rootDir = "app" // or "src" or whatever your root is
-const currentDir = process.cwd()
-walk(path.join(currentDir, rootDir))
+collect(ROOT)
 
-const output = [...iconNames].sort()
-console.log("output: ", output)
-fs.writeFileSync("scripts/used-icons.js", `export const ICONS = ${JSON.stringify(output, null, 2)}`)
-console.log(`✅ Found ${output.length} used icons`)
+// write the result for build-sprite to consume
+const list = [...ICONS].sort()
+fs.writeFileSync("scripts/used-icons.js", `export const ICONS = ${JSON.stringify(list, null, 2)};`)
+console.log(`✅ Found ${list.length} icons:`, list)

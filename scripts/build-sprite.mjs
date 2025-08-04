@@ -17,7 +17,7 @@ const needed = new Set(ICONS.map(toKebab))
 const found = new Set()
 
 const store = svgstore({
-  copyAttrs: ["viewBox", "fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "class", "style"],
+  copyAttrs: ["viewBox", "fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "class", "style", "width", "height"],
 })
 const iconsDir = "node_modules/lucide-static/icons"
 
