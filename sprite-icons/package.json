@@ -1,18 +1,22 @@
 {
   "name": "@react-zero-ui/svg-sprite",
+  "description": "Lucide-React DX + zero-runtime SVG sprite for Next/Vite/ frontends",
   "version": "0.1.0",
   "type": "module",
-  "description": "Lucide-React DX + zero-runtime SVG sprite with Next/Vite/Micro-frontend support",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "src",
     "dist",
+    "src/config.js",
+    "src/config.d.ts",
     "scripts",
     "README.md"
   ],
   "scripts": {
-    "sprite": "npx tsc"
+    "build": "rm -rf dist && node scripts/gen-wrappers.js && tsc && node scripts/gen-dist.js",
+    "prepare": "npm run build",
+    "type-check": "tsc --noEmit | tee type-errors.log"
   },
   "bin": {
     "svg-sprite-gen": "scripts/index.js"
@@ -22,15 +26,16 @@
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
-    "lucide-static": "^0.525.0"
-  },
-  "devDependencies": {
+    "lucide-static": "^0.525.0",
+    "svgstore": "^3.0.1",
     "@babel/core": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/traverse": "^7.28.0",
+    "@babel/traverse": "^7.28.0"
+  },
+  "devDependencies": {
     "@types/node": "^24.2.0",
-    "svgstore": "^3.0.1",
+    "@types/react": "^19.1.9",
     "typescript": "^5.0.0"
   }
 }

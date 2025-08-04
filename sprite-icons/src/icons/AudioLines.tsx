@@ -1,9 +1,13 @@
 import { AudioLines as DevIcon, type LucideProps } from "lucide-react"
-export const AudioLines: React.FC<LucideProps> = (props) =>
+import { SPRITE_PATH } from "../../src/config.js";
+interface Props extends LucideProps { size?: number | string; }
+export const AudioLines: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (
-    <DevIcon {...props} />
+    <DevIcon {...props} size={size}/>
   ) : (
-    <svg {...props}>
-      <use href={`/icons.svg#audio-lines`} />
+    <svg {...props}
+    {...(size != null ? { width: size, height: size } : {})}
+		>
+      <use href={`${SPRITE_PATH}#audio-lines`} />
     </svg>
   )

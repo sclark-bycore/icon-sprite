@@ -1,9 +1,13 @@
 import { Plug as DevIcon, type LucideProps } from "lucide-react"
-export const Plug: React.FC<LucideProps> = (props) =>
+import { SPRITE_PATH } from "../../src/config.js";
+interface Props extends LucideProps { size?: number | string; }
+export const Plug: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (
-    <DevIcon {...props} />
+    <DevIcon {...props} size={size}/>
   ) : (
-    <svg {...props}>
-      <use href={`/icons.svg#plug`} />
+    <svg {...props}
+    {...(size != null ? { width: size, height: size } : {})}
+		>
+      <use href={`${SPRITE_PATH}#plug`} />
     </svg>
   )

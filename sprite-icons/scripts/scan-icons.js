@@ -1,20 +1,33 @@
-// scripts/scan-icons.js
+#!/usr/bin/env node
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import * as babel from "@babel/core";
 import traverseImport from "@babel/traverse";
 import * as t from "@babel/types";
-import { IMPORT_NAME, ROOT_DIR } from "./config.js";
+import { IMPORT_NAME, ROOT_DIR } from "../src/config.js";
 
-const traverse = traverseImport.default;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ICONS = new Set();
-// Scan the app directory of the consuming project
-const ROOT = path.join(process.cwd(), ROOT_DIR);
 
-// walk all TSX/JSX files
+// 1️⃣ Find the consuming app’s root (walk up until we see its package.json)
+function findProjectRoot(dir = process.cwd()) {
+	while (true) {
+		if (fs.existsSync(path.join(dir, "package.json"))) return dir;
+		const parent = path.dirname(dir);
+		if (parent === dir) break;
+		dir = parent;
+	}
+	throw new Error("Could not locate project root");
+}
+
+const projectRoot = findProjectRoot();
+const scanRoot = path.join(projectRoot, ROOT_DIR);
+
+// 2️⃣ Recursively scan for ImportDeclaration → IMPORT_NAME
 function collect(dir) {
-	for (const f of fs.readdirSync(dir)) {
-		const full = path.join(dir, f);
+	for (const file of fs.readdirSync(dir)) {
+		const full = path.join(dir, file);
 		if (fs.statSync(full).isDirectory()) {
 			collect(full);
 		} else if (/\.[jt]sx$/.test(full)) {
@@ -27,11 +40,9 @@ function collect(dir) {
 				],
 				sourceType: "module",
 			});
-			traverse(ast, {
+			traverseImport.default(ast, {
 				ImportDeclaration(path) {
-					const from = path.node.source.value;
-					// adjust this to match your icon lib path
-					if (from === IMPORT_NAME) {
+					if (path.node.source.value === IMPORT_NAME) {
 						for (const spec of path.node.specifiers) {
 							if (t.isImportSpecifier(spec)) {
 								ICONS.add(spec.imported.name);
@@ -44,9 +55,9 @@ function collect(dir) {
 	}
 }
 
-collect(ROOT);
+collect(scanRoot);
 
-// write the result for build-sprite to consume
-const list = [...ICONS].sort();
-fs.writeFileSync("scripts/used-icons.js", `export const ICONS = ${JSON.stringify(list, null, 2)};`);
-console.log(`✅ Found ${list.length} icons:`, list);
+// 3️⃣ Emit used-icons.js alongside these scripts
+const outFile = path.join(__dirname, "used-icons.js");
+fs.writeFileSync(outFile, `export const ICONS = ${JSON.stringify([...ICONS].sort(), null, 2)};\n`, "utf8");
+console.log(`✅ Found ${ICONS.size} icons; wrote to ${outFile}`);

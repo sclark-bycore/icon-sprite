@@ -1,9 +1,13 @@
 import { MailX as DevIcon, type LucideProps } from "lucide-react"
-export const MailX: React.FC<LucideProps> = (props) =>
+import { SPRITE_PATH } from "../../src/config.js";
+interface Props extends LucideProps { size?: number | string; }
+export const MailX: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (
-    <DevIcon {...props} />
+    <DevIcon {...props} size={size}/>
   ) : (
-    <svg {...props}>
-      <use href={`/icons.svg#mail-x`} />
+    <svg {...props}
+    {...(size != null ? { width: size, height: size } : {})}
+		>
+      <use href={`${SPRITE_PATH}#mail-x`} />
     </svg>
   )

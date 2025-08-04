@@ -1,50 +1,51 @@
-// src/build-sprite.mjs
+#!/usr/bin/env node
 import fs from "fs";
 import path from "path";
 import svgstore from "svgstore";
 import { ICONS } from "./used-icons.js";
+import { createRequire } from "module";
+import { SPRITE_PATH } from "../src/config.js";
 
-const toKebab = (s) =>
-	s
+const require = createRequire(import.meta.url);
+
+// 1️⃣ Locate lucide-static icons folder via require.resolve
+const sample = require.resolve("../../../lucide-static/icons/mail.svg");
+const iconsDir = path.dirname(sample);
+
+// 2️⃣ PascalCase → kebab-case
+function toKebab(s) {
+	return s
 		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
 		.replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
-		.replace(/([a-z])([0-9])/g, "$1-$2")
-		.replace(/([0-9])([a-z])/g, "$1-$2")
 		.toLowerCase();
+}
 
-// ── 1. sets
+// 3️⃣ Build sets
 const needed = new Set(ICONS.map(toKebab));
-
-const found = new Set();
-
 const store = svgstore({
 	copyAttrs: ["viewBox", "fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "style", "size"],
 });
-const iconsDir = "./lucide-static/icons";
+const found = new Set();
 
-// ── 2. build sprite for all icons we actually have
+// 4️⃣ Add only the used SVGs
 for (const file of fs.readdirSync(iconsDir)) {
 	if (!file.endsWith(".svg")) continue;
-
-	const id = file.slice(0, -4); // no ".svg"
+	const id = file.slice(0, -4);
 	if (!needed.has(id)) continue;
-
 	found.add(id);
 	store.add(id, fs.readFileSync(path.join(iconsDir, file), "utf8"));
 }
 
-// ── 3. detect missing icons
+// 5️⃣ Error on missing
 const missing = [...needed].filter((id) => !found.has(id));
-
 if (missing.length) {
-	throw new Error(`❌ Missing icons: ${missing.join(", ")}\n` + `    → Add the SVGs to lucide-static or fix the import names.\n\n`);
+	throw new Error(`❌ Missing icons: ${missing.join(", ")}`);
 }
-const finalSprite = store.toString({ inline: false });
 
-// ── 4. emit sprite only if nothing missing
-if (!missing.length) {
-	fs.mkdirSync("public", { recursive: true });
-	fs.writeFileSync(`public/icons.svg`, finalSprite);
+// 6️⃣ Write the sprite under the consumer's public/
+const sprite = store.toString({ inline: true });
+const outDir = path.join(process.cwd(), "public");
+fs.mkdirSync(outDir, { recursive: true });
+fs.writeFileSync(path.join(outDir, SPRITE_PATH), sprite);
 
-	console.log(`✅  icons.svg built with ${found.size} icons.`);
-}
+console.log(`✅ Built public/icons.svg with ${found.size} icons.`);

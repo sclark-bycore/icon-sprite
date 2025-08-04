@@ -1,9 +1,13 @@
 import { LocateOff as DevIcon, type LucideProps } from "lucide-react"
-export const LocateOff: React.FC<LucideProps> = (props) =>
+import { SPRITE_PATH } from "../../src/config.js";
+interface Props extends LucideProps { size?: number | string; }
+export const LocateOff: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (
-    <DevIcon {...props} />
+    <DevIcon {...props} size={size}/>
   ) : (
-    <svg {...props}>
-      <use href={`/icons.svg#locate-off`} />
+    <svg {...props}
+    {...(size != null ? { width: size, height: size } : {})}
+		>
+      <use href={`${SPRITE_PATH}#locate-off`} />
     </svg>
   )

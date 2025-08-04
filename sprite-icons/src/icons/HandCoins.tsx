@@ -1,9 +1,13 @@
 import { HandCoins as DevIcon, type LucideProps } from "lucide-react"
-export const HandCoins: React.FC<LucideProps> = (props) =>
+import { SPRITE_PATH } from "../../src/config.js";
+interface Props extends LucideProps { size?: number | string; }
+export const HandCoins: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (
-    <DevIcon {...props} />
+    <DevIcon {...props} size={size}/>
   ) : (
-    <svg {...props}>
-      <use href={`/icons.svg#hand-coins`} />
+    <svg {...props}
+    {...(size != null ? { width: size, height: size } : {})}
+		>
+      <use href={`${SPRITE_PATH}#hand-coins`} />
     </svg>
   )

@@ -44,7 +44,6 @@
     ".next/types/**/*.ts",
     ".zero-ui/**/*.d.ts",
     "next-env.d.ts",
-    "scripts/config.js",
   ],
   "exclude": [
     "node_modules"
