@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@react-zero-ui/core": "^0.2.4",
-    "@react-zero-ui/svg-sprite": "file:../sprite-icons/react-zero-ui-svg-sprite-0.1.0.tgz",
+    "@react-zero-ui/svg-sprite": "file:../svg-sprite/react-zero-ui-svg-sprite-0.1.1.tgz",
     "clsx": "^2.1.1",
     "motion": "^12.23.0",
     "next": "^15.3.1",

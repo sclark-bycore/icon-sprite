@@ -1,5 +1,6 @@
 import { Grab as DevIcon, type LucideProps } from "lucide-react"
-import { SPRITE_PATH } from "../../src/config.js";
+import { SPRITE_PATH } from "../config.js";
+
 interface Props extends LucideProps { size?: number | string; }
 export const Grab: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (

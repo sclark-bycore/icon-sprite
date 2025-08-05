@@ -16,15 +16,12 @@ const jsLines = files.map((file) => {
 	const name = path.basename(file, ".js");
 	return `export { ${name} } from "./icons/${name}.js";`;
 });
-// add the runtime export
-// jsLines.push(`export { SPRITE_PATH } from "../src/config.js";`);
 
 // 3. Build the TS declaration barrel
 const dtsLines = files.map((file) => {
 	const name = path.basename(file, ".js");
 	return `export { ${name} } from "./icons/${name}";`;
 });
-// dtsLines.push(`export { SPRITE_PATH } from "../src/config";`);
 
 // 4. Write both barrels
 fs.writeFileSync(jsOut, jsLines.join("\n") + "\n", "utf8");

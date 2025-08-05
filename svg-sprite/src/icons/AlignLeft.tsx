@@ -1,5 +1,6 @@
 import { AlignLeft as DevIcon, type LucideProps } from "lucide-react"
-import { SPRITE_PATH } from "../../src/config.js";
+import { SPRITE_PATH } from "../config.js";
+
 interface Props extends LucideProps { size?: number | string; }
 export const AlignLeft: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (

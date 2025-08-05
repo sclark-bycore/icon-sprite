@@ -27,7 +27,8 @@ for (const file of files) {
 	const pascal = toPascal(id); // "ArrowRight"
 	const wrapperTsx = `\
 import { ${pascal} as DevIcon, type LucideProps } from "lucide-react"
-import { SPRITE_PATH } from "../../src/config.js";
+import { SPRITE_PATH } from "../config.js";
+
 interface Props extends LucideProps { size?: number | string; }
 export const ${pascal}: React.FC<Props> = ({size, ...props}) =>
   process.env.NODE_ENV === "development" ? (

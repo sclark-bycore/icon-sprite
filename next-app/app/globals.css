@@ -31,69 +31,7 @@ body {
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-
-  /* HamburgerIcon */
-  .nav-icon span {
-    background-color: var(--color-surface);
-    position: absolute;
-    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
-    width: 100%;
-    height: 6px;
-    transition-duration: 500ms;
-    will-change: -webkit-filter, filter, opacity, transform;
-  }
-  body[data-mobile-menu="close"] .nav-icon:hover span {
-    background-color: var(--color-surface-active);
-  }
-
-  .nav-icon {
-    span:nth-child(1) {
-      top: 0px;
-      left: 0px;
-    }
-    span:nth-child(2) {
-      top: 12px;
-      left: 0px;
-      opacity: 1;
-    }
-    span:nth-child(3) {
-      bottom: 0px;
-      left: 0px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    body[data-mobile-menu="closed"] {
-      .nav-icon:hover span:nth-child(1) {
-        transform: rotate(3deg) scaleY(1.1);
-      }
-
-      .nav-icon:hover span:nth-child(2) {
-        transform: rotate(-3deg) scaleY(1.1);
-      }
-
-      .nav-icon:hover span:nth-child(3) {
-        transform: rotate(3deg) scaleY(1.1);
-      }
-    }
-  }
-  body[data-mobile-menu="open"] {
-    .nav-icon span {
-      background-color: var(--color-surface-active);
-    }
-
-    .nav-icon span:nth-child(1) {
-      transform: rotate(45deg);
-      top: 13px;
-    }
-
-    .nav-icon span:nth-child(3) {
-      opacity: 0;
-    }
-
-    .nav-icon span:nth-child(2) {
-      transform: rotate(-45deg);
-      top: 13px;
-    }
+  .flex-center {
+    @apply flex items-center justify-center;
   }
 }
