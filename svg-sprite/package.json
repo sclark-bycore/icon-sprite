@@ -8,8 +8,6 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src/config.js",
-    "src/config.d.ts",
     "scripts",
     "!/scripts/gen-dist.js",
     "!/scripts/gen-wrappers.js",

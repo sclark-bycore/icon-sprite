@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import * as babel from "@babel/core";
 import traverseImport from "@babel/traverse";
 import * as t from "@babel/types";
-import { IMPORT_NAME, ROOT_DIR } from "../src/config.js";
+import { IMPORT_NAME, ROOT_DIR } from "../dist/config.js";
 
 // ESM __dirname shim
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

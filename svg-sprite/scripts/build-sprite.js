@@ -4,8 +4,7 @@ import path from "path";
 import { createRequire } from "module";
 import svgstore from "svgstore";
 import { ICONS } from "./used-icons.js";
-import { SPRITE_PATH } from "../src/config.js";
-import { CUSTOM_SVG_DIR } from "../src/config.js";
+import { SPRITE_PATH, CUSTOM_SVG_DIR } from "../dist/config.js";
 
 const require = createRequire(import.meta.url);
 
