@@ -45,7 +45,13 @@ if (missing.length) {
 // 6️⃣ Write the sprite under the consumer's public/
 const sprite = store.toString({ inline: true });
 const outDir = path.join(process.cwd(), "public");
+const outFile = path.join(outDir, SPRITE_PATH);
+
 fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, SPRITE_PATH), sprite);
+//clear file if it exists
+if (fs.existsSync(outFile)) {
+	fs.unlinkSync(outFile);
+}
+fs.writeFileSync(outFile, sprite);
 
 console.log(`✅ Built public/icons.svg with ${found.size} icons.`);

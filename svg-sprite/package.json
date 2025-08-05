@@ -11,6 +11,8 @@
     "src/config.js",
     "src/config.d.ts",
     "scripts",
+    "!/scripts/gen-dist.js",
+    "!/scripts/gen-wrappers.js",
     "README.md"
   ],
   "scripts": {

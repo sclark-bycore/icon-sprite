@@ -9,7 +9,7 @@ package-lock.json
 # testing
 /coverage
 /playwright-report
-/type-errors.log
+sprite-icons/type-errors.log
 # next.js
 /.next/
 /out/
