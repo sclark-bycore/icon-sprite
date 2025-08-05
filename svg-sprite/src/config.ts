@@ -1,9 +1,9 @@
+// src/config.ts
 import fs from "fs";
 import path from "path";
-import { createRequire } from "module";
+import { pathToFileURL } from "url";
 
-// Default config
-let config = {
+const DEFAULT_CONFIG = {
 	IMPORT_NAME: "@react-zero-ui/svg-sprite",
 	SPRITE_PATH: "/icons.svg",
 	ROOT_DIR: "app",
@@ -11,22 +11,23 @@ let config = {
 	OUTPUT_DIR: "public",
 };
 
-// Check for user config (synchronously)
-const userConfigPath = path.resolve(process.cwd(), "zero-ui.config.js");
-if (fs.existsSync(userConfigPath)) {
+let userConfig = {};
+const configFile = path.resolve(process.cwd(), "zero-ui.config.js");
+
+if (fs.existsSync(configFile)) {
 	try {
-		const require = createRequire(import.meta.url);
-		delete require.cache[userConfigPath]; // Clear cache for hot reloading
-		const userConfig = require(userConfigPath);
-		config = { ...config, ...userConfig };
+		const mod = await import(pathToFileURL(configFile).href);
+		userConfig = mod.default ?? mod;
 	} catch (e) {
 		// @ts-expect-error
-		console.warn("⚠️  Failed to load zero-ui.config.js:", e.message);
+		console.warn("⚠️ Failed to load zero-ui.config.js:", e.message);
 	}
 }
 
-export const IMPORT_NAME = config.IMPORT_NAME;
-export const SPRITE_PATH = config.SPRITE_PATH;
-export const ROOT_DIR = config.ROOT_DIR;
-export const CUSTOM_SVG_DIR = config.CUSTOM_SVG_DIR;
-export const OUTPUT_DIR = config.OUTPUT_DIR;
+const merged = { ...DEFAULT_CONFIG, ...userConfig };
+
+export const IMPORT_NAME = merged.IMPORT_NAME;
+export const SPRITE_PATH = merged.SPRITE_PATH;
+export const ROOT_DIR = merged.ROOT_DIR;
+export const CUSTOM_SVG_DIR = merged.CUSTOM_SVG_DIR;
+export const OUTPUT_DIR = merged.OUTPUT_DIR;

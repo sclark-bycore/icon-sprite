@@ -19,7 +19,7 @@
     "type-check": "tsc --noEmit | tee type-errors.log"
   },
   "bin": {
-    "svg-sprite-gen": "scripts/index.js"
+    "zero-svg": "scripts/index.js"
   },
   "peerDependencies": {
     "react": ">=17"

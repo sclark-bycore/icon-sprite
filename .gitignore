@@ -2,7 +2,7 @@
 node_modules/
 /lucide-static
 /lucide-react
-
+/dist
 # package-lock.json
 package-lock.json
 
