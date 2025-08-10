@@ -4,11 +4,12 @@ import path from "path";
 import { pathToFileURL } from "url";
 
 const DEFAULT_CONFIG = {
-	IMPORT_NAME: "@react-zero-ui/svg-sprite",
+	IMPORT_NAME: "@react-zero-ui/icon-sprite",
 	SPRITE_PATH: "/icons.svg",
-	ROOT_DIR: "app",
-	CUSTOM_SVG_DIR: "custom-icons",
+	ROOT_DIR: "",
+	CUSTOM_SVG_DIR: "zero-ui-icons",
 	OUTPUT_DIR: "public",
+	IGNORE_ICONS: ["CustomIcon"],
 };
 
 let userConfig = {};
@@ -31,3 +32,4 @@ export const SPRITE_PATH = merged.SPRITE_PATH;
 export const ROOT_DIR = merged.ROOT_DIR;
 export const CUSTOM_SVG_DIR = merged.CUSTOM_SVG_DIR;
 export const OUTPUT_DIR = merged.OUTPUT_DIR;
+export const IGNORE_ICONS = merged.IGNORE_ICONS;

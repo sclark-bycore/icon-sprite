@@ -5,14 +5,14 @@ import { fileURLToPath } from "url";
 import * as babel from "@babel/core";
 import traverseImport from "@babel/traverse";
 import * as t from "@babel/types";
-import { IMPORT_NAME, ROOT_DIR } from "../dist/config.js";
+import { IMPORT_NAME, ROOT_DIR, IGNORE_ICONS } from "../dist/config.js";
 
 // ESM __dirname shim
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ICONS = new Set();
 
-// 1️⃣ Find the consuming app’s root
-function findProjectRoot(dir = process.cwd()) {
+// 1️⃣ Find the consuming app's root
+export function findProjectRoot(dir = process.cwd()) {
 	let current = dir;
 	while (true) {
 		if (fs.existsSync(path.join(current, "package.json"))) return current;
@@ -59,7 +59,8 @@ function collect(dir) {
 						if (imported === "Icon") {
 							// generic Component: track for JSX
 							iconLocalNames.add(local);
-						} else {
+							// ignore CustomIcon imports
+						} else if (!IGNORE_ICONS.includes(imported)) {
 							// named icon import
 							ICONS.add(imported);
 						}

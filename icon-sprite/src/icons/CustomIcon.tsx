@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import path from "path";
 import type { SVGProps } from "react";
 import { parseFragment, type ChildNode } from "parse5";
-import { CUSTOM_SVG_DIR, SPRITE_PATH } from "../config";
+import { CUSTOM_SVG_DIR, ROOT_DIR, SPRITE_PATH } from "../config";
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
 	name: string;
@@ -58,7 +58,7 @@ export function extractSVGContent(svgString: string) {
 
 export function CustomIcon({ name, size, ...rest }: IconProps) {
 	if (process.env.NODE_ENV === "development") {
-		const file = path.join(process.cwd(), "public", CUSTOM_SVG_DIR, `${name}.svg`);
+		const file = path.join(process.cwd(), ROOT_DIR, CUSTOM_SVG_DIR, `${name}.svg`);
 		let raw = "";
 
 		try {

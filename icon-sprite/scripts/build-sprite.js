@@ -24,6 +24,10 @@ function toKebab(s) {
 const needed = new Set(ICONS.map(toKebab));
 const store = svgstore({
 	copyAttrs: ["viewBox", "fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "style", "size"],
+	svgAttrs: {
+		xmlns: "http://www.w3.org/2000/svg",
+		"xmlns:xlink": "http://www.w3.org/1999/xlink",
+	},
 });
 const found = new Set();
 
@@ -44,6 +48,8 @@ if (fs.existsSync(customDir)) {
 		const id = file.slice(0, -4); // "my-icon"
 		const svg = fs.readFileSync(path.join(customDir, file), "utf8");
 		store.add(id, svg); // <symbol id="my-icon">…
+		// Mark custom icons as found so they don't appear as missing
+		found.add(id);
 		console.log(`🔧 Added custom icon: ${id}`);
 	}
 }
