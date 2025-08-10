@@ -1,6 +1,6 @@
 <div align="center">
   
-  # @react-zero-ui/icon-sprite
+  # react-zero-ui/icon-sprite
   
 </div>
 
@@ -39,7 +39,6 @@ This package gives you:
 ><CustomIcon name="dog" size={24} />
 >```
 
-<small>This command builds the icons sprite for production</small>
 
 ---
 
@@ -57,6 +56,9 @@ npm install @react-zero-ui/icon-sprite
 >```bash
 >npx zero-svg
 >```
+
+<small>This command builds the icons sprite for production</small>
+
 
 ---
 

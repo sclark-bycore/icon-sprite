@@ -1,6 +1,15 @@
 {
   "name": "@react-zero-ui/icon-sprite",
   "description": "Lucide-React DX + zero-runtime SVG sprite for Next/Vite/ frontends",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-zero-ui/icon-sprite.git",
+    "directory": "icon-sprite"
+  },
+  "author": "Austinserb <austin@zero-ui.dev>",
+  "sideEffects": false,
+  "license": "MIT",
+  "private": false,
   "version": "0.1.2",
   "type": "module",
   "main": "dist/index.js",
