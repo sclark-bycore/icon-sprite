@@ -32,6 +32,7 @@ const Home: React.FC = () => {
         <div className="flex-center border border-red-800">
           <CustomIcon name="google-ads" size={80} className="h-20 w-20 fill-red-500!" />
           <CustomIcon name="ai" size={80} className="h-20 w-20 fill-red-500!" />
+          <CustomIcon name="react-svgrepo-com" size={80} className="h-20 w-20 fill-red-500!" />
         </div>
         <AlarmClockCheck size={80} color="#000" strokeWidth={3} />
         <AlarmClockMinus size={80} className="h-20 w-20 fill-red-500" />
