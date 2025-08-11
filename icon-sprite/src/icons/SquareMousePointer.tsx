@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { SquareMousePointer as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.SquareMousePointer as any;
-}
+
 
 export function SquareMousePointer({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("SquareMousePointer", size, width, height);

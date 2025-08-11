@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { PenLine as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.PenLine as any;
-}
+
 
 export function PenLine({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("PenLine", size, width, height);

@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { Sigma as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.Sigma as any;
-}
+
 
 export function Sigma({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("Sigma", size, width, height);

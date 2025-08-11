@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { AlignHorizontalDistributeCenter as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.AlignHorizontalDistributeCenter as any;
-}
+
 
 export function AlignHorizontalDistributeCenter({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("AlignHorizontalDistributeCenter", size, width, height);

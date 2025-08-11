@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { ChartBarDecreasing as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.ChartBarDecreasing as any;
-}
+
 
 export function ChartBarDecreasing({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("ChartBarDecreasing", size, width, height);

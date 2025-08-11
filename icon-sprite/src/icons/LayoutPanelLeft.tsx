@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { LayoutPanelLeft as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.LayoutPanelLeft as any;
-}
+
 
 export function LayoutPanelLeft({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("LayoutPanelLeft", size, width, height);

@@ -1,14 +1,9 @@
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
-import { createRequire } from "module";
+import { SquareBottomDashedScissors as DevIcon } from "lucide-react"
 import { renderUse,type IconProps,} from "../_shared.js";
 
-let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
-if (process.env.NODE_ENV !== "production") {
-  const require = createRequire(import.meta.url);
-  const mod = require("lucide-react");
-  DevIcon = mod.SquareBottomDashedScissors as any;
-}
+
 
 export function SquareBottomDashedScissors({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("SquareBottomDashedScissors", size, width, height);
