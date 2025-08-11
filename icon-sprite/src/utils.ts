@@ -1,4 +1,4 @@
-// config.js (or utils.js)
+// utils.js
 
 // track which icons we've already warned for
 const __warnedIcons = ((globalThis as any).__rzui_icon_warned ??= new Set());

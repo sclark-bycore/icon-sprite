@@ -148,7 +148,6 @@ This runs the full pipeline:
 | `scan-icons.js`   | Parse your codebase for used icons (`Icon` usage or named imports) |
 | `used-icons.js`   | Collects a list of unique icon names |
 | `build-sprite.js` | Uses [`svgstore`](https://github.com/DIYgod/svgstore) to generate `icons.svg` from used Lucide + custom SVGs |
-| `config.js` | Loads your `zero-ui.config.js` if present |
 
 
 --- 
@@ -159,20 +158,6 @@ This runs the full pipeline:
 * **Only ships the icons you actually use** — smallest possible sprite.
 * **Minimal install**: No runtime dependency tree. Just React + Lucide.
 
----
-
-## 🔧 Configuration (`zero-ui.config.js`)
-
-You can override defaults with a root config file:
-
-```ts
-// zero-ui.config.js
-export default {
-  ROOT_DIR: "src", // where to scan for custom icon usage (default: "")
-  SPRITE_PATH: "icons.svg", // emitted to /public/icons.svg
-  CUSTOM_SVG_DIR: "zero-ui-icons",  // folder for your custom SVGs at project root
-}
-```
 
 ---
 

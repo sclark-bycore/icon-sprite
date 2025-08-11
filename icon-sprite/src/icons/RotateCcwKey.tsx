@@ -1,27 +1,26 @@
-import { RotateCcwKey as DevIcon, type LucideProps } from "lucide-react"
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
+import { createRequire } from "module";
+import { renderUse,type IconProps,} from "../_shared.js";
 
-interface Props extends LucideProps { size?: number | string | undefined; width?: number | string | undefined; height?: number | string | undefined; }
+let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
+if (process.env.NODE_ENV !== "production") {
+  const require = createRequire(import.meta.url);
+  const mod = require("lucide-react");
+  DevIcon = mod.RotateCcwKey as any;
+}
 
-export function RotateCcwKey({ size, width, height, ...props }: Props) {
+export function RotateCcwKey({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("RotateCcwKey", size, width, height);
-
-  return process.env.NODE_ENV !== "production" ? (
-    <DevIcon
-      {...props}
-      {...(size != null ? { size } : {})}
-      {...(width != null ? { width } : {})}
-      {...(height != null ? { height } : {})}
-    />
-  ) : (
-    <svg
-      {...props}
-      {...(size != null ? { width: size, height: size } : {})}
-      {...(width != null ? { width } : {})}
-      {...(height != null ? { height } : {})}
-    >
-      <use href={`${SPRITE_PATH}#rotate-ccw-key`} />
-    </svg>
-  );
+  if (process.env.NODE_ENV !== "production" && DevIcon) {
+    return (
+      <DevIcon
+        {...(props as any)}
+        {...(size != null ? { size } : {})}
+        {...(width != null ? { width } : {})}
+        {...(height != null ? { height } : {})}
+      />
+    );
+  }
+  return  renderUse("rotate-ccw-key", width, height, size, SPRITE_PATH, props)
 }

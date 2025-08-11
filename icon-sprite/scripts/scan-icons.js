@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ICONS = new Set();
 
 // 1️⃣ Find the consuming app's root
-export function findProjectRoot(dir = process.cwd()) {
+function findProjectRoot(dir = process.cwd()) {
 	let current = dir;
 	while (true) {
 		if (fs.existsSync(path.join(current, "package.json"))) return current;

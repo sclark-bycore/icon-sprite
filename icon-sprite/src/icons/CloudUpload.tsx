@@ -1,27 +1,26 @@
-import { CloudUpload as DevIcon, type LucideProps } from "lucide-react"
 import { SPRITE_PATH } from "../config.js";
 import { warnMissingIconSize } from "../utils.js";
+import { createRequire } from "module";
+import { renderUse,type IconProps,} from "../_shared.js";
 
-interface Props extends LucideProps { size?: number | string | undefined; width?: number | string | undefined; height?: number | string | undefined; }
+let DevIcon: ((p: IconProps) => React.JSX.Element) | undefined;
+if (process.env.NODE_ENV !== "production") {
+  const require = createRequire(import.meta.url);
+  const mod = require("lucide-react");
+  DevIcon = mod.CloudUpload as any;
+}
 
-export function CloudUpload({ size, width, height, ...props }: Props) {
+export function CloudUpload({ size, width, height, ...props }: IconProps) {
   warnMissingIconSize("CloudUpload", size, width, height);
-
-  return process.env.NODE_ENV !== "production" ? (
-    <DevIcon
-      {...props}
-      {...(size != null ? { size } : {})}
-      {...(width != null ? { width } : {})}
-      {...(height != null ? { height } : {})}
-    />
-  ) : (
-    <svg
-      {...props}
-      {...(size != null ? { width: size, height: size } : {})}
-      {...(width != null ? { width } : {})}
-      {...(height != null ? { height } : {})}
-    >
-      <use href={`${SPRITE_PATH}#cloud-upload`} />
-    </svg>
-  );
+  if (process.env.NODE_ENV !== "production" && DevIcon) {
+    return (
+      <DevIcon
+        {...(props as any)}
+        {...(size != null ? { size } : {})}
+        {...(width != null ? { width } : {})}
+        {...(height != null ? { height } : {})}
+      />
+    );
+  }
+  return  renderUse("cloud-upload", width, height, size, SPRITE_PATH, props)
 }
