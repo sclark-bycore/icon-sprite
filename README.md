@@ -188,3 +188,35 @@ This is one of the **most optimized** icon systems for serious frontends:
 
 ---
  
+
+
+ <!-- 
+ 📂 icon-sprite/
+├── 📂 node_modules
+│   └── 📂 lucide-static
+│   │   └── 📂 icons
+│   │       └── *icon-name*.svg
+├── 📂 dist
+│   │── config.js
+│   │── index.js
+│   │── used-icons.js
+│   │── utils.js
+│   └── icons.svg
+│── 📂 scripts
+│   │── build-sprite.js
+│   │── gen-dist.js
+│   │── gen-wrappers.js
+│   │── index.js
+│   │── scan-icons.js
+│   └── used-icons.js
+│── 📂 src
+│   │── 📂 icons
+│   │   │── *IconName*.tsx
+│   │── config.ts
+│   └── utils.ts
+│── README.md
+│── package-lock.json
+│── package.json
+│── react-zero-ui-icon-sprite-0.1.3.tgz
+└── tsconfig.json
+ -->

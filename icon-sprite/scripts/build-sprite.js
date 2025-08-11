@@ -5,6 +5,7 @@ import { createRequire } from "module";
 import svgstore from "svgstore";
 import { ICONS } from "./used-icons.js";
 import { SPRITE_PATH, CUSTOM_SVG_DIR } from "../dist/config.js";
+import { componentNameToStaticId } from "../dist/utils.js";
 
 const require = createRequire(import.meta.url);
 
@@ -12,16 +13,8 @@ const require = createRequire(import.meta.url);
 const sample = require.resolve("../../../lucide-static/icons/mail.svg");
 const iconsDir = path.dirname(sample);
 
-// 2️⃣ pascal→kebab
-function toKebab(s) {
-	return s
-		.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-		.replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
-		.toLowerCase();
-}
-
-// 3️⃣ Gather your needed Lucide IDs
-const needed = new Set(ICONS.map(toKebab));
+// 2️⃣ Gather your needed Lucide IDs
+const needed = new Set(ICONS.map(componentNameToStaticId));
 const store = svgstore({
 	copyAttrs: ["viewBox", "fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "style", "size"],
 	svgAttrs: {
@@ -32,7 +25,7 @@ const store = svgstore({
 });
 const found = new Set();
 
-// 4️⃣ Add only the Lucide icons you actually use
+// 3️⃣ Add only the Lucide icons you actually use
 for (const file of fs.readdirSync(iconsDir)) {
 	if (!file.endsWith(".svg")) continue;
 	const id = file.slice(0, -4);
@@ -41,7 +34,7 @@ for (const file of fs.readdirSync(iconsDir)) {
 	store.add(id, fs.readFileSync(path.join(iconsDir, file), "utf8"));
 }
 
-// 5️⃣ Optionally include *all* SVGs from your custom folder
+// 4️⃣ Optionally include *all* SVGs from your custom folder
 const customDir = path.resolve(process.cwd(), CUSTOM_SVG_DIR);
 if (fs.existsSync(customDir)) {
 	for (const file of fs.readdirSync(customDir)) {
@@ -55,13 +48,13 @@ if (fs.existsSync(customDir)) {
 	}
 }
 
-// 6️⃣ Error on any missing Lucide icon
+// 5️⃣ Error on any missing Lucide icon
 const missing = [...needed].filter((id) => !found.has(id));
 if (missing.length) {
 	throw new Error(`❌ Missing icons: ${missing.join(", ")}`);
 }
 
-// 7️⃣ Write a fresh sprite (inline: true drops xml/doctype)
+// 6️⃣ Write a fresh sprite (inline: true drops xml/doctype)
 const sprite = store.toString({ inline: true });
 const outDir = path.join(process.cwd(), "public");
 const outFile = path.join(outDir, SPRITE_PATH);
