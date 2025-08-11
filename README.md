@@ -13,8 +13,15 @@
 
 > Part of the [React Zero-UI](https://github.com/react-zero-ui) ecosystem.
  
+---
+
+### 📊 Live Demo – 270% Smaller HTML Payload
+
+**See the size difference in action:** [View Demo](https://zero-ui.dev/icon-sprite)  
+270% smaller HTML output compared to directly inlining Lucide React components.
 
 ---
+
 
 ## 🧠 What This Library Does
 
