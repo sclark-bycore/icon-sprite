@@ -1,4 +1,3 @@
-"use client"
 import {
   ArrowRight,
   AArrowDown,
@@ -14,6 +13,7 @@ import {
   AlarmSmoke,
   Album,
   AlignCenterHorizontal,
+  CustomIcon,
 } from "@react-zero-ui/icon-sprite"
 
 const iconNames = [AArrowDown, AArrowUp, ALargeSmall, Accessibility, Activity]
@@ -30,9 +30,11 @@ const Home: React.FC = () => {
           return <Icon key={index + `${icon}`} className="h-20 w-20" />
         })}
         <div className="flex-center border border-red-800">
-          <AlarmClockCheck size={80} />
+          <CustomIcon name="google-ads" size={80} className="h-20 w-20 fill-red-500!" />
+          <CustomIcon name="ai" size={80} className="h-20 w-20 fill-red-500!" />
         </div>
-        <AlarmClockMinus size={80} className="h-20 w-20" />
+        <AlarmClockCheck size={80} color="#000" strokeWidth={3} />
+        <AlarmClockMinus size={80} className="h-20 w-20 fill-red-500" />
         <AlarmClockOff className="h-20 w-20" />
         <AlarmClockPlus className="h-20 w-20" />
         <AlarmClock className="h-20 w-20" />

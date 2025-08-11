@@ -35,7 +35,7 @@ for (const file of fs.readdirSync(iconsDir)) {
 }
 
 // 4️⃣ Optionally include *all* SVGs from your custom folder
-const customDir = path.resolve(process.cwd(), CUSTOM_SVG_DIR);
+const customDir = path.resolve(process.cwd(), "public", CUSTOM_SVG_DIR);
 if (fs.existsSync(customDir)) {
 	for (const file of fs.readdirSync(customDir)) {
 		if (!file.endsWith(".svg")) continue;

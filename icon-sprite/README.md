@@ -2,7 +2,8 @@
   
   # @react-zero-ui/icon-sprite
 
-  [![MIT](https://img.shields.io/badge/License-MIT-green.svg)](#) [![npm](https://img.shields.io/npm/v/@react-zero-ui/icon-sprite.svg)](#)
+  [![MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/react-zero-ui/icon-sprite/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/@react-zero-ui/icon-sprite.svg)](https://www.npmjs.com/package/@react-zero-ui/icon-sprite)
+
 
   
 </div>
@@ -16,10 +17,15 @@
 
 ---
 
+**📊 Live Demo — ~270% Smaller HTML**
+**See the difference:** [View Demo](https://zero-ui.dev/icon-sprite)
+
+---
+
 ## 🧠 What This Library Does
 
 1. **Full Lucide-React DX in development**
-   Easy imports, hot reload, JSX props — import icons from `@react-zero-ui/icon-sprite` instead of `lucide-react`.
+   Import from `@react-zero-ui/icon-sprite` instead of `lucide-react`. Hot reload, JSX props, no caching headaches.
 
 2. **Zero-runtime in production**  
    Every icon becomes `<use href="/icons.svg#id" />` at build time.
@@ -28,18 +34,24 @@
    Only icons actually used in your app are included.
 
 ## 🙏 Custom Icon Support
-Drop SVGs into **`/zero-ui-icons/`** at your project root, then use `<CustomIcon />` with the `name` prop set to the file name (without `.svg`).
+Drop SVGs into **`/public/zero-ui-icons/`**, then use `<CustomIcon />` with the filename (no `.svg`).
 
-> ![Tip](https://img.shields.io/badge/Tip-green)
+>![Tip](https://img.shields.io/badge/Tip-green)
 >```txt
->📁/zero-ui-icons/
->   └── dog.svg 
+>📁/public
+>   └──📁/zero-ui-icons/
+>       └──dog.svg
 > ```
 > ```tsx
 >import { CustomIcon } from "@react-zero-ui/icon-sprite";
 >//❗The name MUST match the name of the  file name (no .svg extension).
 ><CustomIcon name="dog" size={24} />
 >```
+
+
+>![Info](https://img.shields.io/badge/Info-blue)
+> In dev you may see a brief FOUC using custom icons; this is removed in production.
+
 
 
 ---
@@ -86,15 +98,20 @@ That's it!
 import { ArrowRight, Mail } from "@react-zero-ui/icon-sprite";
 
 <ArrowRight size={24} className="text-gray-600" />
+<Mail width={24} height={24} />
 ```
 
-### For Custom Icons:
+### Custom Icons:
 
+Drop SVGs into **`/public/zero-ui-icons/`**, then use `<CustomIcon />` with the filename (no `.svg`).
 ```tsx
 import { CustomIcon } from "@react-zero-ui/icon-sprite";
-
+//❗The name MUST match the name of the file name (without .svg).
 <CustomIcon name="dog" size={32} />
 ```
+
+
+
 ---
 
 ## 🧪 How It Works (Under the Hood)
@@ -151,25 +168,14 @@ This runs the full pipeline:
  
 
 --- 
-## ✨ Why This Is Better
 
-* **DX-first**: No flicker. No sprite caching. Live updates.
-* **Runtime-free in production**: Sprites are native, fast, lightweight & highly Cached.
-* **Only ships the icons you actually use** — smallest possible sprite.
-* **Minimal install**: No runtime dependency tree. Just React + Lucide.
+## ✨ Why This Beats Icon Libraries Everywhere
+
+* **DX-first in dev**: No flicker. No sprite caching. Live updates.
+* **Zero-runtime in production**: Sprites are native, fast, lightweight & highly Cached.
+* **Only ships the icons you actually use** - smallest possible sprite.
+* **Custom icon support**: Drop SVGs into `/public/zero-ui-icons/` and use `<CustomIcon />`
 
 
----
+Made with ❤️ for the React community by [@austin1serb](https://github.com/austin1serb)
 
-## 🧠 Final Thoughts
-
-This is one of the **most optimized** icon systems for serious frontends:
-
-* First-class developer experience (DX) with Lucide's React components.
-* Production builds with **zero JavaScript**, just SVGs.
-* Custom icon support out-of-the-box.
-* Strict static analysis = smallest possible bundle.
-* Fully compatible with Next.js 15+, Vite, or any modern React stack.
-
----
- 
