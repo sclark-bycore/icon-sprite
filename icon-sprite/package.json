@@ -1,6 +1,19 @@
 {
   "name": "@react-zero-ui/icon-sprite",
-  "description": "Lucide-React DX + zero-runtime SVG sprite for Next/Vite/ frontends",
+  "description": "Generate a single SVG sprite containing only the icons you used (Lucide + custom). Lucid to SVG sprite solution for React.",
+  "keywords": [
+    "react",
+    "icons",
+    "lucide",
+    "svg",
+    "sprite",
+    "nextjs",
+    "vite",
+    "zero-runtime",
+    "tree-shaking",
+    "lucid-to-sprite",
+    "svg-to-sprite"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/react-zero-ui/icon-sprite.git",
@@ -28,7 +41,7 @@
     "type-check": "tsc --noEmit | tee type-errors.log"
   },
   "bin": {
-    "zero-svg": "scripts/index.js"
+    "zero-icons": "scripts/index.js"
   },
   "peerDependencies": {
     "react": ">=17"

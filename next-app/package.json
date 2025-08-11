@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "zero-icons",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
-    "clean": "rm -rf .next",
+    "clean": "rm -rf .next node_modules package-lock.json",
     "reset": "npm run clean && rm -rf node_modules && rm -rf package-lock.json && npm install"
   },
   "dependencies": {

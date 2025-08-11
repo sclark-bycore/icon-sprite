@@ -1,41 +1,43 @@
 <div align="center">
   
-  # react-zero-ui/icon-sprite
+  # @react-zero-ui/icon-sprite
+
+  [![MIT](https://img.shields.io/badge/License-MIT-green.svg)](#) [![npm](https://img.shields.io/npm/v/@react-zero-ui/icon-sprite.svg)](#)
+
   
 </div>
 
 > [!NOTE]
-> **Automatically generates an SVG sprite containing only the icons you used in development** - Lucide + custom SVGs.  
+> **Generates one SVG sprite containing only the icons you used** - Lucide + custom SVGs.
+> DX with real `<Icon/>` in dev ➡️ zero-runtime `<use/>` in prod.
 
-> **Zero-runtime icon sprites for React.** using Lucide icons and custom SVGs - optimized for dev experience and production performance. Part of the [React Zero-UI](https://github.com/react-zero-ui) ecosystem.
+> Part of the [React Zero-UI](https://github.com/react-zero-ui) ecosystem.
  
 
 ---
 
 ## 🧠 What This Library Does
 
-This package gives you:
-
 1. **Full Lucide-React DX in development**
-   Easy Imports, Instant updates, hot-reloading, JSX props, no caching issues. Use Just like Lucid but import the icon from `@react-zero-ui/icon-sprite` instead of `lucide-react`.
+   Easy imports, hot reload, JSX props — import icons from `@react-zero-ui/icon-sprite` instead of `lucide-react`.
 
-2. **Zero-runtime SVG sprite usage in production**
-   Replaces every icon component with a `<use href="/icons.svg#id" />` element at build time.
+2. **Zero-runtime in production**  
+   Every icon becomes `<use href="/icons.svg#id" />` at build time.
 
-3. **Tree-shaking via static analysis**
-   Icons are only included in the final sprite if your app actually uses them.
+3. **Smallest possible sprite**  
+   Only icons actually used in your app are included.
 
-## 🙏 Custom icon support
-   Just drop SVGs into `app/zero-ui-icons/`, and use the `<CustomIcon/>` component. set the `name` prop to the name of the icon file want to use. 
+## 🙏 Custom Icon Support
+Drop SVGs into **`/zero-ui-icons/`** at your project root, then use `<CustomIcon />` with the `name` prop set to the file name (without `.svg`).
 
 > [!TIP]
 >```txt
->📁/public/zero-ui-icons/
+>📁/zero-ui-icons/
 >   └── dog.svg 
->```
->```tsx
+> ```
+> ```tsx
 >import { CustomIcon } from "@react-zero-ui/icon-sprite";
->//❗The name MUST match the name of the icon file - .svg extension is not needed.
+>//❗The name MUST match the name of the  file name (no .svg extension).
 ><CustomIcon name="dog" size={24} />
 >```
 
@@ -52,17 +54,31 @@ npm install @react-zero-ui/icon-sprite
 
 ## ❗ Build Command
 > [!CAUTION]
-> You must run this command before building your app, for `zero-svg` to work properly.
+> Run this before your app build so the sprite exists.
 >```bash
->npx zero-svg
+>npx zero-icons
 >```
 
-<small>This command builds the icons sprite for production</small>
+This command builds the icons sprite for production.
 
+Or add this to your `package.json` scripts:
+```json
+{
+  "scripts": {
+    "prebuild": "zero-icons",
+    "build": "your build command"
+  }
+}
+```
+That's it!
 
 ---
 
 ## 🔨 Usage
+
+> [!WARNING]
+> **Pass `size`, or both `width` and `height`, to ensure identical dev/prod rendering.**  
+> Dev defaults (Lucide 24×24) differ from sprite viewBoxes in production. Missing these props will **very likely** change the visual size in prod.
 
 ### For Lucide Icons:
 
@@ -122,52 +138,25 @@ At build time:
 To generate everything:
 
 ```bash
-npx zero-svg
+npx zero-icons
 ```
 
 This runs the full pipeline:
 
-| Script            | Purpose                                                                                                      |
-| ----------------- | ------------------------------------------------------------------------------------------------------------ |
-| `scan-icons.js`   | Parse your codebase for used icons (`Icon` usage or named imports)                                           |
-| `used-icons.js`   | Collects a list of unique icon names                                                                         |
+| Script | Purpose |
+| --- | --- |
+| `scan-icons.js`   | Parse your codebase for used icons (`Icon` usage or named imports) |
+| `used-icons.js`   | Collects a list of unique icon names |
 | `build-sprite.js` | Uses [`svgstore`](https://github.com/DIYgod/svgstore) to generate `icons.svg` from used Lucide + custom SVGs |
-| `gen-wrappers.js` | Writes individual `.tsx` wrappers per icon to `src/icons/`                                                   |
-| `gen-dist.js`     | Emits d.ts/types/index.js for publishing                                                                     |
-| `config.js`       | Loads your `zero-ui.config.js` if present                                                                    |
+| `config.js` | Loads your `zero-ui.config.js` if present |
 
 
----
-<!-- 
-## 📁 Directory Structure
-
-```txt
-📂 icon-sprite/
-├── 📂 dist/
-│   ├── 📂 icons/            # Generated Lucide icon wrappers (TSX)
-│   ├── config.js           # Final resolved config
-│   ├── index.js            # Entrypoint (exports Icon components)
-├── 📂 scripts/
-│   ├── scan-icons.js       # AST parser → finds used icons
-│   ├── used-icons.js       # Stores collected icon names
-│   ├── build-sprite.js     # Creates the sprite from Lucide + custom
-│   ├── gen-wrappers.js     # Creates TSX files for icons
-│   ├── gen-dist.js         # Prepares the package for publishing
-├── 📂 src/
-│   ├── 📂 icons/            # Same as dist, before compile
-│   ├── config.ts           # Default + user config merge
-├── 📄 README.md
-├── 📄 package.json
-└── 📄 tsconfig.json
-```
-
---- -->
-
+--- 
 ## ✨ Why This Is Better
 
 * **DX-first**: No flicker. No sprite caching. Live updates.
-* **Runtime-free in production**: Sprites are native, fast, lightweight.
-* **Built for Next.js / Vite**: No plugin overhead.
+* **Runtime-free in production**: Sprites are native, fast, lightweight & highly Cached.
+* **Only ships the icons you actually use** — smallest possible sprite.
 * **Minimal install**: No runtime dependency tree. Just React + Lucide.
 
 ---
@@ -180,8 +169,8 @@ You can override defaults with a root config file:
 // zero-ui.config.js
 export default {
   ROOT_DIR: "src", // where to scan for custom icon usage (default: "")
-  SPRITE_PATH: "icons.svg", // public output path
-  CUSTOM_SVG_DIR: "zero-ui-icons", // folder for your custom SVGs
+  SPRITE_PATH: "icons.svg", // emitted to /public/icons.svg
+  CUSTOM_SVG_DIR: "zero-ui-icons",  // folder for your custom SVGs at project root
 }
 ```
 

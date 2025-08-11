@@ -41,13 +41,12 @@ const Home: React.FC = () => {
         <AlarmSmoke size={80} />
         <Album className="h-20 w-20" />
         <AlignCenterHorizontal className="h-20 w-20" />
-
-        <svg className="h-20 w-20">
-          <use href="/icons.svg#google-ads" />
-        </svg>
-        <svg className="h-20 w-20">
-          <use href="/icons.svg#ai" />
-        </svg>
+        <div className="h-20 w-20">
+          <Album size={80} />
+        </div>{" "}
+        <div className="h-20 w-20">
+          <AlignCenterHorizontal size={80} />
+        </div>
       </div>
     </div>
   )
