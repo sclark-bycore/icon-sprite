@@ -1,29 +1,60 @@
+[![MIT License](https://img.shields.io/badge/License-MIT-4b00b8?style=for-the-badge&logo=github&logoColor=white)](https://github.com/react-zero-ui/icon-sprite/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/v/@react-zero-ui/icon-sprite?style=for-the-badge&logo=npm&logoColor=white&label=npm&color=0044cc)](https://www.npmjs.com/package/@react-zero-ui/icon-sprite)
+[![View Demo](https://img.shields.io/badge/View%20Demo-%E2%86%97-4b00b8?style=for-the-badge&logo=react&logoColor=white)](https://zero-ui.dev/icon-sprite)
+
 <div align="center">
   
-  # @react-zero-ui/icon-sprite
+<h1>React Zero Icon Sprite</h1>
 
-  [![MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/react-zero-ui/icon-sprite/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/@react-zero-ui/icon-sprite.svg)](https://www.npmjs.com/package/@react-zero-ui/icon-sprite)
+<legend><b>Use over 1,600</b> Lucide <code>&lt;Icon /&gt;</code> in development. </br> Ship <b>one SVG sprite</b> in production - only the icons you used.</legend>
+<small>Average 300% Decrease in HTML Size. <a  target="_blank" href="https://zero-ui.dev/icon-sprite">See the Demo ↗︎</a></small>
 
-  
+<p/>
+  <p/>
+<p>
+  🔹 No React at runtime 🔹 Tree-shaken & deduped 🔹 Lucide + your custom SVGs 🔹 Long-cacheable sprite 🔹 SSR-safe
+</p>
 </div>
 
-> [!NOTE]
-> **Generates one SVG sprite containing only the icons you used** - Lucide + custom SVGs.
-> DX with real `<Icon/>` in dev ➡️ zero-runtime `<use/>` in prod.
 
-> Part of the [React Zero-UI](https://github.com/react-zero-ui) ecosystem.
+```jsx 
+// Development (DX)
+import { Icon } from "@react-zero-ui/icon-sprite";
+
+<ArrowRight props="..."/>;
+```
+Automaitcally generates:
+```html
+<!-- Production output (zero runtime) -->
+<svg props="...">
+  <use href="/icon.svg#arrow-right" />;
+</svg>
+
+```
+
+Quick Start
+
+🔹 `npm install @react-zero-ui/icon-sprite`
+
  
----
-
-**📊 Live Demo - ~270% Smaller HTML**
-**See the difference:** [View Demo](https://zero-ui.dev/icon-sprite)
-
-
+ 
+Part of the [React Zero-UI](https://github.com/react-zero-ui) ecosystem.
+ 
+ 
 
 ---
 
+ 
+> [!NOTE]
+>**Live Demo ~270% Smaller HTML**
+>**See the difference:** [View Demo](https://zero-ui.dev/icon-sprite)
 
-## 🧠 What This Library Does
+
+
+---
+
+
+## What This Library Does
 
 1. **Full Lucide-React DX in development**
    Easy imports, hot reload, JSX props - import icons from `@react-zero-ui/icon-sprite` instead of `lucide-react`.
@@ -34,7 +65,7 @@
 3. **Smallest possible sprite**  
    Only icons actually used in your app are included.
 
-## 🙏 Custom Icon Support
+## Custom Icon Support
 Drop SVGs into **`/public/zero-ui-icons/`**, then use `<CustomIcon />` with the filename (no `.svg`).
 
 > [!TIP]
@@ -49,12 +80,12 @@ Drop SVGs into **`/public/zero-ui-icons/`**, then use `<CustomIcon />` with the 
 ><CustomIcon name="dog" size={24} />
 >```
 
-> [!INFO]
+> [!NOTE]
 > In dev you may see a brief FOUC using custom icons; this is removed in production.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install @react-zero-ui/icon-sprite
@@ -62,7 +93,7 @@ npm install @react-zero-ui/icon-sprite
 
 ---
 
-## ❗ Build Command
+## Build Command
 > [!CAUTION]
 > Run this before your app build so the sprite exists.
 >```bash
@@ -84,7 +115,7 @@ That's it! You can now use the icons in your app.
 
 ---
 
-## 🔨 Usage
+## Usage
 
 > [!WARNING]
 > **Pass `size`, or both `width` and `height`, to ensure identical dev/prod rendering.**  
@@ -110,9 +141,9 @@ import { CustomIcon } from "@react-zero-ui/icon-sprite";
 
 ---
 
-## 🧪 How It Works (Under the Hood)
+## How It Works (Under the Hood)
 
-### ✅ Development: DX First
+### Development: DX First
 
 In dev, each icon wrapper looks like this:
 
@@ -146,7 +177,7 @@ At build time:
 
 ---
 
-## ⚡️ Tooling
+## Tooling
 
 To generate everything:
 
@@ -165,7 +196,7 @@ This runs the full pipeline:
 
 --- 
 
-## ✨ Why This Beats Icon Libraries Everywhere
+## Why This Beats Icon Libraries Everywhere
 
 * **DX-first in dev**: No flicker. No sprite caching. Live updates.
 * **Zero-runtime in production**: Sprites are native, fast, lightweight & highly Cached.
