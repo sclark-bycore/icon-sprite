@@ -34,7 +34,10 @@ Automaitcally generates:
 
 Quick Start
 
-🔹 `npm install @react-zero-ui/icon-sprite`
+```
+npm install @react-zero-ui/icon-sprite
+
+```
 
  
  
